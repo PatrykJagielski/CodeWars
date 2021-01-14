@@ -4,7 +4,9 @@ You are given the total volume m of the building. Being given m can you find the
 
 The parameter of the function findNb (find_nb, find-nb, findNb) will be an integer m and you have to return the integer n such as n^3 + (n-1)^3 + ... + 1^3 = m if such a n exists or -1 if there is no such n.
 
-Examples:
+##Examples:
+
+```
 findNb(1071225) --> 45
 findNb(91716553919377) --> -1
 mov rdi, 1071225
@@ -12,3 +14,4 @@ call find_nb            ; rax <-- 45
 
 mov rdi, 91716553919377
 call find_nb            ; rax <-- -1
+```
