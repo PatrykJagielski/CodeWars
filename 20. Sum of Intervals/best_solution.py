@@ -5,3 +5,11 @@ def sum_of_intervals(intervals):
             result.add(x)
 
     return len(result)
+
+
+def sum_of_intervals(intervals):
+    return len(set([i for a, b in intervals for i in range(a, b)]))
+
+
+def sum_of_intervals(intervals):
+    return len(set.union(*(set(range(*i))for i in intervals)))
