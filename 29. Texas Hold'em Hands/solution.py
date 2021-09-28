@@ -20,10 +20,13 @@ SUITS = '♦♥♠♣'
 RANKS = 'AKQJ198765432'
 
 def is_straight_flush(all_cards):
-    f = is_flush(all_cards)
+    all_cards_suits = [x[-1] for x in all_cards]
+    c = Counter(all_cards_suits)
+    suit = c.most_common(1)[0][0]
+    all_cards = [card for card in all_cards if suit in card]
     s = is_straight(all_cards)
-    if f and s:
-        return ("straight-flush", f[1])
+    if s:
+        return ("straight-flush", s[1])
 
 def is_pair(all_cards):
     seen = set()
@@ -48,8 +51,9 @@ def is_pair(all_cards):
         return ("nothing", all_cards_ranks[:5])
 
 def is_straight(all_cards):
-    all_cards_ranks = [x[0] for x in all_cards]
-    for i in range(3):
+    all_cards_ranks = list(set([x[0] for x in all_cards]))
+    all_cards_ranks.sort(key=lambda card: RANK.index(card[0]))
+    for i in range(len(all_cards_ranks) - 4):
         s = "".join(all_cards_ranks[i:i+5])
         if s in RANKS:
             return("straight", all_cards_ranks[i:i+5])
